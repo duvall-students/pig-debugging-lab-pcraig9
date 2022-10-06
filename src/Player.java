@@ -2,7 +2,7 @@
 public abstract class Player {
 
 	protected String myName;
-	protected int myScore;
+	public int myScore; // changed to public because it is not retrievable 1.
 	private final int WIN_SCORE = 100;
 	
 	public Player(String myName){
@@ -24,7 +24,7 @@ public abstract class Player {
 		myScore = 0;
 	}
 	
-	public void addToScore(int thisRound){
+	public void addToScore(int thisRound){ // possible error here 4.
 		myScore += thisRound;
 	}
 	

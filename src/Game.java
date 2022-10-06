@@ -11,7 +11,7 @@ public class Game {
 	public Game(){
 		Player player1 = new GUIPlayer();
 		Player player2 = new ComputerPlayer();
-		die = new Random();
+		die = new Random(); // could be error, change between 1 and 6 3.
 		spinner = new Spinner();
 	}
 	
@@ -48,12 +48,13 @@ public class Game {
 		boolean keepGoing = true;
 		printStartRoundMessage(whoseTurn);
 		while(keepGoing){
-			int roll = die.nextInt(7);
+			int roll = die.nextInt(7); // this is where you get the number
 			String spin = spinner.spin();
 			System.out.println(roll+ " "+ spin);
 			
 			if(roll == LOSER_ROLL){
 				System.out.println("Lose a turn.");
+				whoseTurn.resetScore(); // maybe the fix for 7.
 				return 0;
 			}
 			else if(spin == LOSER_SPIN.toUpperCase()){
@@ -72,7 +73,10 @@ public class Game {
 	
 	// True if one of the players has won the game.
 	public boolean winner(){
-		return player1.hasWon() && player2.hasWon();
+		if(player1.myScore >= 0 && player2.myScore >= 0) { //Player score needs to be greater than or equal to 0
+		return player1.hasWon() || player2.hasWon(); // should be an or 4.
+		}
+		return false;
 	}
 	
 	/* 
